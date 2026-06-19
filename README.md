@@ -1,2 +1,2 @@
 # connectify
-This is real time chat app.
+This is real time chat website.
