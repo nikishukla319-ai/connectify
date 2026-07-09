@@ -3,6 +3,7 @@ import SendInput from './SendInput';
 import Messages from './Messages';
 import { useDispatch, useSelector } from "react-redux";
 import {setSelectedUser} from '../redux/userSlice';
+import { BiArrowBack } from "react-icons/bi";
 
 
 const MessageContainer = () =>{
@@ -10,13 +11,20 @@ const MessageContainer = () =>{
     const dispatch=useDispatch();
 
     const isOnline = onlineUsers?.includes(selectedUser?._id) || false;
+
+    const backHandler = () => {
+        dispatch(setSelectedUser(null));
+    }
     
     return(
         <>
         {
           selectedUser !== null ? (
-            <div className='md:min-w-[550px] flex flex-col'>
+            <div className='w-full md:min-w-[550px] flex flex-col h-full'>
             <div className='flex gap-2 items-center bg-zinc-800 text-white px-4 py-2 mb-2'>
+                <button onClick={backHandler} className='md:hidden text-white mr-1'>
+                  <BiArrowBack className="w-6 h-6" />
+                </button>
                 <div className={`flex items-center gap-3  ${isOnline?'online':''}` }>
                     <div className="relative w-12 h-12">
   <img
@@ -46,7 +54,7 @@ const MessageContainer = () =>{
         </div>
 
           ) :(
-            <div className='md:min-w-[550px] flex flex-col justify-center items-center'>
+            <div className='hidden md:flex w-full md:min-w-[550px] flex-col justify-center items-center'>
             <h1 className='text-4xl  text-white font-bold'>Hi,{authUser?.fullName}</h1>
             <h1 className='text-2xl text-white'>Let's start conversation</h1>
             </div>
