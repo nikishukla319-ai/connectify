@@ -10,7 +10,7 @@ const HomePage = () =>{
         <div className={`${selectedUser ? 'hidden' : 'flex'} md:flex flex-col w-full md:w-auto`}>
           <Sidebar/>
         </div>
-        <div className={`${selectedUser ? 'flex' : 'hidden'} md:flex flex-col w-full`}>
+      <div className={`${selectedUser ? 'hidden' : 'flex'} md:flex flex-col w-full md:w-auto h-full`}>
           <MessageContainer/>
         </div>
     </div>
