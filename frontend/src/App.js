@@ -70,7 +70,7 @@ function App() {
      }
   },[authUser]);
   return (
-    <div className="w-full max-w-full overflow-x-hidden px-2 sm:p-4 h-screen flex items-center justify-center">
+    <div className="w-full max-w-full overflow-x-hidden h-screen flex items-stretch sm:items-center justify-center sm:p-4">
       <RouterProvider router={router}/>
     </div>
   );
