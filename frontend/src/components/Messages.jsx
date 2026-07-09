@@ -10,7 +10,7 @@ const Messages = () => {
     const {messages}=useSelector(store=>store.message);
     
     return (
-        <div className='px-4 flex-1 overflow-auto'>
+       <div className='px-4 flex-1 overflow-y-auto min-h-0'>
             {
                 messages && messages?.map((message)=>{
                     return (
