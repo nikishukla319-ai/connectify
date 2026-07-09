@@ -20,8 +20,8 @@ const MessageContainer = () =>{
         <>
         {
           selectedUser !== null ? (
-            <div className='w-full md:min-w-[550px] flex flex-col h-full'>
-            <div className='flex gap-2 items-center bg-zinc-800 text-white px-4 py-2 mb-2'>
+            <div className='w-full md:min-w-[550px] flex flex-col h-full overflow-hidden'>
+            <div className='shrink-0 flex gap-2 items-center bg-zinc-800 text-white px-4 py-2 mb-2'>
                 <button onClick={backHandler} className='md:hidden text-white mr-1'>
                   <BiArrowBack className="w-6 h-6" />
                 </button>
@@ -50,11 +50,13 @@ const MessageContainer = () =>{
                 
             </div>
             <Messages/>
-            <SendInput/>
+            <div className='shrink-0'>
+              <SendInput/>
+            </div>
         </div>
 
           ) :(
-            <div className='hidden md:flex w-full md:min-w-[550px] flex-col justify-center items-center'>
+            <div className='hidden md:flex w-full md:min-w-[550px] flex-col justify-center items-center h-full'>
             <h1 className='text-4xl  text-white font-bold'>Hi,{authUser?.fullName}</h1>
             <h1 className='text-2xl text-white'>Let's start conversation</h1>
             </div>
