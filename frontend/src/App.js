@@ -1,6 +1,6 @@
 import Signup from './components/Signup';
 import './App.css';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import { createBrowserRouter,RouterProvider,Navigate } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 import { useEffect, useState } from 'react';
@@ -10,18 +10,34 @@ import { setOnlineUsers } from './redux/userSlice';
 import { setSocket } from './redux/socketSlice';
 import { BASE_URL } from './config';
 
+const ProtectedRoute = ({children}) => {
+  const {authUser} = useSelector(store=>store.user);
+  if(!authUser){
+    return <Navigate to="/login" replace/>;
+  }
+  return children;
+};
+
+const PublicRoute = ({children}) => {
+  const {authUser} = useSelector(store=>store.user);
+  if(authUser){
+    return <Navigate to="/" replace/>;
+  }
+  return children;
+};
+
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<HomePage/>
+    element:<ProtectedRoute><HomePage/></ProtectedRoute>
   },
   {
     path:"/register",
-    element:<Signup/>
+    element:<PublicRoute><Signup/></PublicRoute>
   },
   {
     path:"/login",
-    element:<Login/>
+    element:<PublicRoute><Login/></PublicRoute>
   },
 ])
 
