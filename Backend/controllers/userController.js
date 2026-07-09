@@ -17,8 +17,8 @@ export const register = async(req,res)=>{
             return res.status(400).json({message:"Username already exit try different"});
         }
         const  hashedPassword=await bcrypt.hash(password,10);
-        const maleProfilePhoto ='https://www.magnific.com/free-vector/young-man-with-glasses-avatar_370751043.htm#fromView=keyword&page=1&position=2&uuid=0a9412de-7614-4246-8319-a9a07ea93337&query=Avatar ?username=${username}';
-        const femaleProfilePhoto='https://www.magnific.com/free-vector/woman-with-braided-hair-illustration_356306533.htm#fromView=keyword&page=1&position=20&uuid=0a9412de-7614-4246-8319-a9a07ea93337&query=Avatar ? username=${username}';
+        const maleProfilePhoto =`https://randomuser.me/api/portraits/men/${Math.floor(Math.random()*100)}.jpg`;
+        const femaleProfilePhoto=`https://randomuser.me/api/portraits/women/${Math.floor(Math.random()*100)}.jpg`;
 
         await User.create({
             fullName,
@@ -34,7 +34,7 @@ export const register = async(req,res)=>{
         })
     } catch (error){
         console.log(error);
-
+         return res.status(500).json({message:"Internal server error"});
 
     }
 };
@@ -71,6 +71,7 @@ export const login = async(req,res)=>{
 
     } catch(error){
         console.log(error);
+        return res.status(500).json({message:"Internal server error"});
     }
 };
 
@@ -98,4 +99,3 @@ export const login = async(req,res)=>{
     }
 
     
-
