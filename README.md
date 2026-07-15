@@ -1,2 +1,2 @@
 # connectify
-This is real time chat website.
+Real-time chat application built with MERN stack and Socket.io
