@@ -55,6 +55,7 @@ A full-stack **real-time chat application** built with the MERN stack and Socket
 
 ## 📁 Project Structure
 
+```text
 connectify/
 ├── Backend/
 │   ├── config/          # Database connection setup
@@ -65,17 +66,13 @@ connectify/
 │   ├── socket/           # Socket.io setup
 │   └── index.js          # App entry point
 └── frontend/
-├── public/
-└── src/
-├── components/    # React components (Login, Signup, Sidebar, Chat, etc.)
-├── hooks/         # Custom hooks (messages, real-time updates, users)
-├── redux/         # Redux slices and store
-└── App.js
-
-
-
-
----
+    ├── public/
+    └── src/
+        ├── components/    # React components (Login, Signup, Sidebar, Chat, etc.)
+        ├── hooks/         # Custom hooks (messages, real-time updates, users)
+        ├── redux/         # Redux slices and store
+        └── App.js
+```
 
 ## 🚀 Getting Started
 
