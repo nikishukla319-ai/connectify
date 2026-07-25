@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-
+ 
 const userModel=new mongoose.Schema({
     fullName:{
         type:String,
         required:true
-
+ 
     },
     username:{
         type:String,
@@ -23,6 +23,9 @@ const userModel=new mongoose.Schema({
         type:String,
         enum:["male","female"],
         required:true
-    }
+    },
+   
+    connections:[{type:mongoose.Schema.Types.ObjectId, ref:"User"}],
+    pendingRequests:[{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 },{timestamps:true});
 export const User=mongoose.model("User",userModel);
