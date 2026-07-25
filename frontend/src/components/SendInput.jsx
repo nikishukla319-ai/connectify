@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_URL } from "../config";
 import {useDispatch, useSelector} from "react-redux";
 import { setMessages } from '../redux/messageSlice';
+import toast from "react-hot-toast";
 
 const SendInput = () =>{
     
@@ -28,6 +29,8 @@ const SendInput = () =>{
 
        } catch (error){
           console.log(error);
+          const errMsg = error?.response?.data?.message || "Message could not be sent. Please try again.";
+          toast.error(errMsg);
        }
        setMessage("");
      }
