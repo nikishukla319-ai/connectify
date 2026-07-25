@@ -8,22 +8,25 @@ const useGetMessages = ()=>{
     const {selectedUser}=useSelector(store=>store.user);
     const dispatch = useDispatch();
     useEffect(()=>{
-        const fetchMessages = async()=>{
+        const fetchMessages = async(clearFirst)=>{
             
-            dispatch(setMessages([]));
+            if(clearFirst) dispatch(setMessages([]));
             try{
                 axios.defaults.withCredentials=true;
                 const res= await axios.get(`${BASE_URL}/api/v1/message/${selectedUser?._id}`);
-                console.log(res);
                 dispatch(setMessages(res.data))
 
             } catch(error){
                 console.log(error);
-                dispatch(setMessages([])); // fetch fail hua (e.g. not connected) -> khaali rakho
+                if(clearFirst) dispatch(setMessages([])); 
             }
         }
         if(selectedUser?._id){
-            fetchMessages();
+            fetchMessages(true);
+
+            
+            const intervalId = setInterval(()=>fetchMessages(false), 3000);
+            return ()=>clearInterval(intervalId);
         }
 
     },[selectedUser])
