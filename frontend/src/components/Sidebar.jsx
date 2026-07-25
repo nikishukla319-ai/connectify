@@ -32,17 +32,20 @@ const Sidebar = () =>{
       }
       
     }
-    const  searchSubmitHandler=(e)=>{
-      e.preventDefault();
-     const conversationUser=allUsers?.find((user)=> user.fullName.toLowerCase().includes(search.toLowerCase()));
-      if(conversationUser){
-        dispatch(setSelectedUser(conversationUser));;
-      }else{
-          toast.error("User not found!");
-      }
-      
-    
-    }
+   const  searchSubmitHandler=(e)=>{
+  e.preventDefault();
+ const conversationUser=allUsers?.find((user)=> user.fullName.toLowerCase().includes(search.toLowerCase()));
+  if(!conversationUser){
+      toast.error("User not found!");
+      return;
+  }
+  if(conversationUser.connectionStatus!=="accepted"){
+      toast.error("User not connected!");
+      return;
+  }
+  dispatch(setSelectedUser(conversationUser));
+
+}
     return(
     <div className="border-r border-slate-500 p-4 flex flex-col w-full md:w-80 h-full overflow-hidden">
         <form  onSubmit={searchSubmitHandler} action="" className='flex items-center gap-2'>
